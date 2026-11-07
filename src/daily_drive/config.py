@@ -56,6 +56,7 @@ class Settings:
     spotify_client_secret: str | None = os.getenv("SPOTIFY_CLIENT_SECRET")
     spotify_redirect_uri: str | None = os.getenv("SPOTIFY_REDIRECT_URI")
     spotify_scope: str = (
+        "playlist-read-private "
         "playlist-modify-public playlist-modify-private "
         "user-library-read user-top-read ugc-image-upload"
     )

@@ -1,27 +1,34 @@
+
 daily_drive:
-    tracks_after_welcome: 1
-    tracks_between_episodes: 2
-    final_tracks: 10
+  tracks_after_welcome: 2
+  tracks_between_episodes: 4
+  final_tracks: 10
 
 podcasts:
-    - key: "123_segundos"
-      id: "4Z5CoK9UJq3ykgLbcBTQwP"
-      name: "123 Segundos"
-    - key: "cafe_da_manha"
-      id: "6WRTzGhq3uFxMrxHrHh1lo"
-      name: "Café da Manhã"
-    - key: "boletim_folha"
-      id: "45PqwRAJBEOdNc28ijJnIz"
-      name: "Boletim Folha"
-    - key: "o_assunto"
-      id: "4gkKyFdZzkv1eDnlTVrguk"
-      name: "O Assunto"
-    - key: "noticia_no_seu_tempo"
-      id: "3M3xXhNXudIXGNSrjvoETG"
-      name: "Notícia no Seu Tempo"
-    - key: "panorama_cbn"
-      id: "3mKy8vUlAHoLxZVaILsUWw"
-      name: "Panorama CBN"
-    - key: "resumao_diario"
-      id: "7fzhxpt0RgWaLFYydsv2b4"
-      name: "Resumão Diário"
+  - key: radio_guaiba
+    id: 2UHHB80L3oKlrvAWyUkjF3
+    name: "Rádio Guaíba"
+
+  - key: cafe_da_manha
+    id: 6WRTzGhq3uFxMrxHrHh1lo
+    name: "Café da Manhã"
+
+  - key: radio_da_universidade_-_ufrgs
+    id: 2UaQWRAQ77t2UQQlJiWOfG
+    name: "Rádio da Universidade - UFRGS"
+
+  - key: radio_taquara
+    id: 74h8emVrQslHOqwXYdjtxg
+    name: "Rádio Taquara"
+
+  - key: a_estrategia_do_dia
+    id: 1JhleHHeSjIwtnEOi2Scd5
+    name: "A Estratégia do Dia"
+
+  - key: cuscocast
+    id: 5sp2dIPSqy9yy3KG4tRNcS
+    name: "Cuscocast"
+
+  - key: n-blastcast-podcast_nintendo-brasil
+    id: 46N8gmoJAVr2MxUzvcaQPE
+    name: "N-BlastCast-Podcast Nintendo Brasil"

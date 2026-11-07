@@ -65,7 +65,7 @@ class PlaylistService:
         )
 
     def _check_existing_playlist(self, user: User, name: str) -> str | None:
-        user_playlists = self.user_service.get_user_playlists(limit=100)
+        user_playlists = self.user_service.get_user_playlists(limit=50)
         for playlist in user_playlists:
             if playlist.name == name:
                 return playlist.id
@@ -274,7 +274,7 @@ class PlaylistService:
         image_path = root_path / "daily_drive" / \
             "assets" / "images" / "daily_drive.jpg"
         user = self.user_service.get_user_info()
-        playlist_name = "Personal Daily Drive"
+        playlist_name = "Caminho Diário"
         existing_playlist_id = self._check_existing_playlist(
             user, playlist_name)
 
@@ -289,8 +289,8 @@ class PlaylistService:
             )
 
         try:
-            playlist_data = self.sp.user_playlist_create(
-                user.id, playlist_name, public=True)
+            playlist_data = self.sp.current_user_playlist_create(
+    playlist_name, public=True)
             playlist = Playlist(
                 id=playlist_data["id"],
                 name=playlist_data["name"],
