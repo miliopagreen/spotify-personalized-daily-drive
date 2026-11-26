@@ -178,6 +178,8 @@ class PlaylistService:
         tracks_after_welcome: int = 2,
         tracks_between_episodes: int = 4,
         final_tracks: int = 10,
+        *,
+        replace_existing: bool = False,
     ) -> str:
         """
         Add tracks and episodes to playlist following the daily drive structure.
@@ -214,7 +216,10 @@ class PlaylistService:
         )
 
         try:
-            self.sp.playlist_add_items(playlist.id, structured_uris)
+            if replace_existing:
+                self.sp.playlist_replace_items(playlist.id, structured_uris)
+            else:
+                self.sp.playlist_add_items(playlist.id, structured_uris)
         except spotipy.SpotifyException as e:
             return f"Error adding content to playlist: {e}"
         else:
@@ -226,6 +231,7 @@ class PlaylistService:
                 msg += f" Skipped {len(unavailable_tracks)} unavailable tracks."
             return msg
 
+
     def _refresh_existing_playlist(
         self,
         playlist_id: str,
@@ -236,12 +242,18 @@ class PlaylistService:
         final_tracks: int = 10,
     ) -> str:
         root_path = Path(__file__).parents[1]
-        image_path = root_path / "daily_drive" / \
-            "assets" / "images" / "daily_drive.jpg"
+        image_path = (
+            root_path
+            / "daily_drive"
+            / "assets"
+            / "images"
+            / "daily_drive.jpg"
+        )
+
         try:
-            self.sp.playlist_replace_items(playlist_id, [])
             playlist_data = self.sp.playlist(playlist_id)
             self._add_image_to_playlist(playlist_id, str(image_path))
+
             playlist = Playlist(
                 id=playlist_data["id"],
                 name=playlist_data["name"],
@@ -249,8 +261,9 @@ class PlaylistService:
                 owner=None,
                 public=playlist_data.get("public", True),
                 uri=playlist_data["uri"],
-                url=playlist_data["external_urls"]["spotify"]
+                url=playlist_data["external_urls"]["spotify"],
             )
+
             return self._add_structured_content_to_playlist(
                 playlist,
                 tracks,
@@ -258,7 +271,9 @@ class PlaylistService:
                 tracks_after_welcome=tracks_after_welcome,
                 tracks_between_episodes=tracks_between_episodes,
                 final_tracks=final_tracks,
+                replace_existing=True,
             )
+
         except spotipy.SpotifyException as e:
             return f"Error refreshing playlist: {e}"
 

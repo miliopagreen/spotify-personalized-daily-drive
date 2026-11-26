@@ -487,9 +487,10 @@ def test_create_daily_drive_playlist_handles_spotify_exception(monkeypatch: obje
     assert out.startswith("Error creating playlist")
 
 
+
 def test_refresh_existing_playlist_handles_spotify_exception() -> None:
     class SP:
-        def playlist_replace_items(self, playlist_id: str, items: list) -> None:
+        def playlist(self, playlist_id: str) -> None:
             import spotipy
 
             raise spotipy.SpotifyException(400, -1, "bad")
